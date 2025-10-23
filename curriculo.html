@@ -1,32 +1,365 @@
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta name="generator" content="pdf2htmlEX"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<style type="text/css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Currículo — LYS</title>
+<style>
+  :root{
+    --sidebar-bg: #2f3236;
+    --page-bg: #f0f0f0;
+    --panel-bg: #ffffff;
+    --accent: #0cf;
+    --muted: #6b6b6b;
+    --text: #111;
+    --max-width: 1100px;
+    --sidebar-w: 300px;
+    --gutter: 28px;
+    --radius: 8px;
+    --heading-font: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --body-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
 
-#sidebar { position:absolute; top:0; left:0; bottom:0; width:250px; overflow:auto; }
-#page-container { position:absolute; top:0; left:0; right:0; bottom:0; overflow:auto; }
-.pf { position:relative; background-color:white; overflow:hidden; margin:0; border:0; }
-.pc { position:absolute; top:0; left:0; width:100%; height:100%; transform-origin:0 0; }
-.t { position:absolute; white-space:pre; font-size:1px; }
+  html,body{
+    height:100%;
+    margin:0;
+    font-family:var(--body-font);
+    color:var(--text);
+    background:linear-gradient(180deg,var(--page-bg),#e8e8e8 400px);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  .wrap{
+    max-width:var(--max-width);
+    margin:34px auto;
+    padding:28px;
+    box-sizing:border-box;
+  }
+
+  .card{
+    display:flex;
+    gap:var(--gutter);
+    background:transparent;
+    align-items:stretch;
+  }
+
+  /* Sidebar (left column) */
+  .sidebar{
+    width:var(--sidebar-w);
+    min-width:220px;
+    background:var(--sidebar-bg);
+    color:#e8e8e8;
+    border-radius:var(--radius);
+    padding:26px 20px;
+    box-sizing:border-box;
+    box-shadow:0 6px 18px rgba(0,0,0,0.12);
+    flex-shrink:0;
+  }
+
+  .sidebar .name{
+    font-family:var(--heading-font);
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:0.3px;
+    margin-bottom:8px;
+  }
+  .sidebar .role{
+    font-size:13px;
+    color:rgba(255,255,255,0.85);
+    margin-bottom:14px;
+  }
+
+  .meta{ font-size:13px; line-height:1.45; color:#dcdcdc; margin-bottom:18px }
+  .meta a{ color:#9fe9ff; text-decoration:none; }
+  .avatar{
+    width:84px;
+    height:84px;
+    border-radius:8px;
+    background:linear-gradient(135deg,#383b3f,#2b2d30);
+    display:block;
+    margin:10px 0 18px;
+    box-shadow:inset 0 -6px 14px rgba(0,0,0,0.25);
+  }
+
+  .section-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:18px 0 10px;
+    font-weight:700;
+    color:#fff;
+    font-size:13px;
+    letter-spacing:0.6px;
+    text-transform:uppercase;
+  }
+
+  .skill-list, .contact-list{
+    list-style:none;
+    padding:0;
+    margin:0;
+  }
+  .skill-list li, .contact-list li{
+    font-size:13px;
+    margin:8px 0;
+    color:#e0e0e0;
+  }
+
+  .progress{
+    height:8px;
+    background:rgba(255,255,255,0.08);
+    border-radius:999px;
+    overflow:hidden;
+    margin-top:6px;
+  }
+  .progress > i{
+    display:block;
+    height:100%;
+    background:linear-gradient(90deg,var(--accent), #49d0ff);
+    border-radius:999px;
+  }
+
+  /* Main content (right column) */
+  .main{
+    flex:1;
+    background:var(--panel-bg);
+    border-radius:var(--radius);
+    padding:28px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.06);
+    box-sizing:border-box;
+  }
+
+  header.main-header{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    align-items:flex-start;
+    margin-bottom:12px;
+  }
+
+  .title{
+    font-family:var(--heading-font);
+    font-size:20px;
+    font-weight:700;
+    margin:0 0 6px;
+  }
+  .subtitle{
+    margin:0;
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  .block{
+    margin:18px 0;
+  }
+  .block h3{
+    margin:0 0 10px;
+    font-size:15px;
+    color:#222;
+    border-left:4px solid var(--accent);
+    padding-left:12px;
+    font-weight:700;
+  }
+
+  .job{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    align-items:flex-start;
+    margin:8px 0 14px;
+  }
+  .job .left{
+    max-width:75%;
+  }
+  .job .company{
+    font-weight:700;
+    font-size:14px;
+  }
+  .job .meta{
+    color:var(--muted);
+    font-size:13px;
+  }
+  .job p{ margin:8px 0 0; color:#333; font-size:14px; line-height:1.5; }
+
+  /* small badges / labels */
+  .tag{
+    display:inline-block;
+    font-size:12px;
+    padding:4px 8px;
+    border-radius:999px;
+    background:#f1f7fb;
+    color:#176b86;
+    margin-right:6px;
+    margin-top:6px;
+  }
+
+  /* two column lists */
+  .grid-2{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:14px;
+  }
+
+  footer{
+    margin-top:22px;
+    font-size:13px;
+    color:var(--muted);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+
+  /* responsive */
+  @media (max-width:980px){
+    .card{ flex-direction:column; }
+    .sidebar{ width:100%; min-width:auto; order:2; display:flex; gap:20px; }
+    .main{ order:1; }
+    .wrap{ padding:18px; }
+  }
+
+  @media (max-width:600px){
+    :root{ --sidebar-w:100%; }
+    .grid-2{ grid-template-columns:1fr; }
+    .sidebar{ padding:18px; }
+  }
 </style>
 </head>
 <body>
-<div id="page-container">
-  
-  <div class="pf" id="pf1">
-    <div class="pc">
-   
-      <div class="t" style="left:120px; top:80px; font-size:18px;">LYS COUTINHO DE CARVALHO</div>
-      <div class="t" style="left:120px; top:110px; font-size:14px;">Graduanda em Engenharia de Computação — UnB</div>
-      <div class="t" style="left:120px; top:140px; font-size:12px;">Email: lyscoutinhocarv@gmail.com</div>
-   
+  <div class="wrap">
+    <div class="card" role="document">
+
+      <!-- LEFT / SIDEBAR -->
+      <aside class="sidebar" aria-label="Informações pessoais">
+        <div class="avatar" aria-hidden="true"></div>
+
+        <div class="name">LYS</div>
+        <div class="role">Estudante / Programador</div>
+
+        <div class="meta">
+          <div><strong>Local:</strong> Brasília, DF</div>
+          <div><strong>Email:</strong> seu.email@dominio.com</div>
+          <div><strong>GitHub:</strong> <a href="https://github.com/lyscoutinho" target="_blank" rel="noopener">lyscoutinho</a></div>
+        </div>
+
+        <div class="section-title">Competências</div>
+        <ul class="skill-list" aria-hidden="false">
+          <li>Programação C/C++ <div class="progress" aria-hidden="true"><i style="width:84%"></i></div></li>
+          <li>Algoritmos & Estruturas de Dados <div class="progress" aria-hidden="true"><i style="width:88%"></i></div></li>
+          <li>Hardware & VHDL <div class="progress" aria-hidden="true"><i style="width:68%"></i></div></li>
+          <li>Análise de Dados <div class="progress" aria-hidden="true"><i style="width:60%"></i></div></li>
+        </ul>
+
+        <div class="section-title">Idiomas</div>
+        <ul class="skill-list">
+          <li>Português — Nativo</li>
+          <li>Inglês — Intermediário</li>
+        </ul>
+
+        <div class="section-title">Contato</div>
+        <ul class="contact-list">
+          <li>Telefone: (00) 00000-0000</li>
+          <li>LinkedIn: linkedin.com/in/seu-perfil</li>
+        </ul>
+      </aside>
+
+      <!-- RIGHT / MAIN -->
+      <main class="main" role="main">
+        <header class="main-header">
+          <div>
+            <h1 class="title">LYS</h1>
+            <p class="subtitle">Resumo: estudante de computação com foco em programação competitiva, eletrônica digital e desenvolvimento de sistemas.</p>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:14px; color:var(--muted)">Currículo — 2025</div>
+            <div style="margin-top:6px"><span class="tag">Programação</span><span class="tag">Projetos</span></div>
+          </div>
+        </header>
+
+        <section class="block" aria-labelledby="experiencia">
+          <h3 id="experiencia">Experiência e Atividades</h3>
+
+          <div class="job">
+            <div class="left">
+              <div class="company">Monitoria — Universidade de Brasília</div>
+              <div class="meta">Período: 2017 — 2023</div>
+              <p>Monitoria em disciplinas técnicas de programação e apoio a turmas, correção de listas e atendimento aos alunos.</p>
+            </div>
+            <div style="min-width:120px; text-align:right;">
+              <div class="meta">Monitoria</div>
+            </div>
+          </div>
+
+          <div class="job">
+            <div class="left">
+              <div class="company">Trabalho Voluntário — Confederação Brasileira de Kung Fu Wushu</div>
+              <div class="meta">Período: 2017 — 2024</div>
+              <p>Organização de eventos e participação em ações comunitárias.</p>
+            </div>
+            <div style="min-width:120px; text-align:right;">
+              <div class="meta">Voluntariado</div>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="block" aria-labelledby="formacao">
+          <h3 id="formacao">Formação & Cursos</h3>
+
+          <div class="job">
+            <div class="left">
+              <div class="company">Programação Competitiva — Universidade de Brasília</div>
+              <div class="meta">Período: 2024</div>
+              <p>Participação e resolução de problemas em competições (OBMU e outras). Ênfase em algoritmos e estruturas de dados.</p>
+            </div>
+            <div style="min-width:120px; text-align:right;">
+              <div class="meta">Curso / Treinamento</div>
+            </div>
+          </div>
+
+          <div class="job">
+            <div class="left">
+              <div class="company">Cursos Complementares</div>
+              <div class="meta">Monitoria e workshops em tradução e resolução de conflitos</div>
+              <p>Atuação em capacitação de alunos e desenvolvimento de habilidades socioemocionais.</p>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="block" aria-labelledby="projetos">
+          <h3 id="projetos">Projetos</h3>
+          <div style="color:var(--muted); font-size:13px; margin-bottom:8px">Lista de projetos e realizações — (resumo extraído do seu arquivo).</div>
+
+          <div class="grid-2">
+            <div>
+              <strong>Onde se encontrar</strong>
+              <p style="margin:6px 0 0">Jogo desenvolvido — 3º lugar em <em>evento</em>.</p>
+            </div>
+            <div>
+              <strong>Outros projetos</strong>
+              <p style="margin:6px 0 0">Ferramentas e soluções em C/C++ com ênfase em performance.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="block" aria-labelledby="habilidades">
+          <h3 id="habilidades">Habilidades & Informações Complementares</h3>
+
+          <ul style="margin:6px 0 0 18px; color:#333; font-size:14px; line-height:1.5;">
+            <li>Análise de dados e resolução de problemas complexos.</li>
+            <li>Criação e aplicação de materiais de capacitação.</li>
+            <li>Participação em Olimpíadas de Matemática e Informática.</li>
+          </ul>
+        </section>
+
+        <footer>
+          <div>GitHub: <a href="https://github.com/lyscoutinho" target="_blank" rel="noopener">lyscoutinho</a></div>
+          <div style="color:var(--muted)">Última atualização: 2025</div>
+        </footer>
+
+      </main>
     </div>
   </div>
-</div>
 </body>
 </html>
 
