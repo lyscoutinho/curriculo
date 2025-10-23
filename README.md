@@ -1,34 +1,3 @@
 # curriculo
 curriculo em html
-<html>
-!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta charset="utf-8"/>
-<meta name="generator" content="pdf2htmlEX"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<style type="text/css">
-
-#sidebar { position:absolute; top:0; left:0; bottom:0; width:250px; overflow:auto; }
-#page-container { position:absolute; top:0; left:0; right:0; bottom:0; overflow:auto; }
-.pf { position:relative; background-color:white; overflow:hidden; margin:0; border:0; }
-.pc { position:absolute; top:0; left:0; width:100%; height:100%; transform-origin:0 0; }
-.t { position:absolute; white-space:pre; font-size:1px; }
-</style>
-</head>
-<body>
-<div id="page-container">
-  
-  <div class="pf" id="pf1">
-    <div class="pc">
-   
-      <div class="t" style="left:120px; top:80px; font-size:18px;">LYS COUTINHO DE CARVALHO</div>
-      <div class="t" style="left:120px; top:110px; font-size:14px;">Graduanda em Engenharia de Computação — UnB</div>
-      <div class="t" style="left:120px; top:140px; font-size:12px;">Email: lyscoutinhocarv@gmail.com</div>
-   
-    </div>
-  </div>
-</div>
-</body>
-</html>
